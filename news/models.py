@@ -11,10 +11,17 @@ class News(models.Model):
         User, on_delete=models.CASCADE, related_name="news_stories")
     content = models.TextField()
     image = models.ImageField()
+    source = models.URLField(max_length=200)
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
     excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ["-created_on"]
+
+    def __str__(self):
+        return f"{self.title} | written by {self.author} | taken from {self.source}"
 
 
 class Comment(models.Model):
