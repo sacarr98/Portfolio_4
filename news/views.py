@@ -6,5 +6,5 @@ from .models import News
 
 
 class NewsStories(generic.ListView):
-    queryset = News.objects.all()
+    queryset = News.objects.filter(status=1)
     template_name = "news_stories.html"
