@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block content %} {% load static %}
+
+<div class="masthead">
+  <div class="container">
+    <div class="row g-0">
+      <div class="col-md-6 masthead-text">
+        <!-- News title goes in these h1 tags -->
+        <h1 class="news-title">{{ news.title }}</h1>
+        <!-- News author goes before the | the post's created date goes after -->
+        <p class="news-subtitle">{{ news.author }} | {{ news.created_on }}</p>
+      </div>
+      <div class="d-none d-md-block col-md-6 masthead-image">
+        <img
+          src="{% static 'images/default.jpg' %}"
+          class="scale"
+          alt="placeholder"
+        />
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col card mb-4 mt-3 left top">
+      <div class="card-body">
+        <!-- The news content goes inside the card-text. -->
+        <!-- Use the | safe filter inside the template tags -->
+        <p class="card-text">{{ news.content | safe }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}
