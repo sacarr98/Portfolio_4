@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from django.views import generic
+from django.contrib import messages
 from .models import News
 from .forms import CommentForm
 
@@ -37,6 +38,10 @@ def news_detail(request, slug):
             comment.author = request.user
             comment.news = news
             comment.save()
+            messages.add_message(
+                request, messages.SUCCESS,
+                'Comment posted!'
+            )
 
     comment_form = CommentForm()
 
